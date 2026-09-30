@@ -1,0 +1,95 @@
+---
+title: "Qualtrics Assignment #2: Experimental Design"
+subtitle: "Social Media Opinion Leader Study"
+author: "Grace Sen"
+date: "September 29, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    embed-resources: true
+    code-fold: true
+editor: visual
+---
+
+# Assignment Overview
+
+This report documents the Qualtrics programming completed for the Social Media Opinion Leader experimental-design survey. The main tasks included randomly assigning participants to one of two treatment conditions, improving the measurement of social media usage, and making three additional improvements to the questionnaire.
+
+# Experimental Design and Survey Flow
+
+## Random Assignment
+
+I used an embedded-data field named `Ad Type` and a Randomizer in Survey Flow. The Randomizer presents one of two values—`reviewer` or `ads`—and the **Evenly Present Elements** option helps distribute participants evenly across the two conditions.
+
+Two branches were then created:
+
+- Participants assigned `Ad Type = reviewer` receive the `social_media_review` treatment block.
+- Participants assigned `Ad Type = ads` receive the `ads` treatment block.
+
+The dependent-variable block is located outside and after both branches. Therefore, all participants answer the same outcome questions after viewing only one treatment condition. The remaining purchasing-behavior and demographic blocks also appear after the experiment.
+
+![Complete Survey Flow showing the Randomizer, embedded data, branches, treatment blocks, and dependent-variable block.](images/1.png){#fig-survey-flow}
+
+As shown in @fig-survey-flow, the complete flow preserves the intended experimental sequence and prevents participants from viewing both treatments.
+
+# Improvement of Social Media Usage Measurement
+
+## Platform Selection Question
+
+The original Q2.2 measured social media use as one general value. This approach could not show whether a participant spends different amounts of time on different platforms. I added a multiple-answer question asking respondents to select every social media platform they currently use.
+
+![Multiple-answer question asking respondents which social media platforms they use.](images/2.png){#fig-platform-selection}
+
+## Carry Forward Matrix
+
+I revised Q2.2 as a matrix question and used **Carry Forward Statements**. Only the platforms selected in the preceding question are carried forward as rows. Respondents then report their daily usage for each selected platform using five time categories:
+
+- 1 hour or less
+- 1–2 hours
+- 3–4 hours
+- 4–5 hours
+- 5 or more hours
+
+A page break was placed between the platform-selection question and the matrix so Qualtrics could process the selected responses before displaying Q2.2.
+
+![Q2.2 Carry Forward Statements configuration and usage-time matrix.](images/3.png){#fig-carry-forward}
+
+## Preview Verification
+
+I tested the survey in Preview mode by selecting a limited number of platforms. The following page displayed only those platforms in the usage matrix, confirming that the Carry Forward function worked correctly. This design gives more detailed platform-level data while avoiding unnecessary questions for platforms a respondent does not use.
+
+![Preview confirming that only the platforms selected by the respondent appear in Q2.2.](images/4.png){#fig-carry-forward-preview}
+
+# Additional Questionnaire Improvements
+
+## Improvement 1: Age Validation
+
+I added numeric validation to the age question. Qualtrics now accepts only whole numbers from 18 through 100. This prevents respondents from entering letters, decimals, or unrealistic ages and improves the consistency of the demographic data.
+
+![Age question with numeric validation, a minimum of 18, a maximum of 100, and zero decimal places.](images/5.png){#fig-age-validation}
+
+## Improvement 2: More Inclusive Gender Question
+
+I changed the wording from “Your sex” to **“What is your gender?”** and expanded the response options to include male, female, non-binary, prefer to self-describe, and prefer not to answer. A text-entry field was added for respondents who prefer to self-describe. This revision uses clearer and more inclusive wording while allowing respondents to protect their privacy.
+
+![Revised gender question with inclusive response options.](images/6.png){#fig-gender}
+
+## Improvement 3: Revised Ethnicity Question
+
+I corrected the wording to **“What is your ethnicity? Select all that apply.”** and changed the response format to allow multiple answers. I also added an “Other” option with text entry and a “Prefer not to answer” option. This design is more accurate for respondents who identify with more than one ethnicity and gives respondents an appropriate privacy option.
+
+![Revised ethnicity question allowing multiple answers and additional response options.](images/7.png){#fig-ethnicity}
+
+# Final Review
+
+The completed survey includes the required random assignment, two treatment branches, a common dependent-variable block, platform-specific social media usage measurement, and three additional questionnaire improvements. I also tested the Carry Forward behavior in Preview mode to verify that the survey displays the correct questions based on each respondent’s selections.
+
+# Appendix
+
+## Project Links
+
+- [GitHub repository](https://github.com/gracesen/IBM-6500-Qualtrics-M02)
+- [GitHub pages](https://gracesen.github.io/IBM-6500-Qualtrics-M02/)
